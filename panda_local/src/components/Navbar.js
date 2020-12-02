@@ -14,7 +14,7 @@ const Navigation = (props) => {
           <Nav.Link href="/Elo">Rankings</Nav.Link>
             <Nav.Link href="/Tournaments">Tournaments</Nav.Link>
             <Nav.Link href="/HeadToHead">Head to Head</Nav.Link>
-            <Nav.Link href="#CRUD">crud</Nav.Link>
+            <Nav.Link href="/insert">crud</Nav.Link>
             {/* <NavDropdown title="Games">
               <NavDropdown.Item href="#action/1">Melee</NavDropdown.Item>
               <NavDropdown.Item href="#action/2">Ultimate</NavDropdown.Item>
