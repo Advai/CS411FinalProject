@@ -8,39 +8,39 @@ const HeadToHeadList = (props) => {
       <div>
   <p>Set Count: {repos[1][repos[0]["player1"]]} - {repos[1][repos[0]["player2"]]} ({100 * repos[1][repos[0]["player1"]] / (repos[1][repos[0]["player1"]] + repos[1][repos[0]["player2"]])})%</p>
   <p>Game Count: {repos[2][repos[0]["player1"]]} - {repos[2][repos[0]["player2"]]} ({100 * repos[2][repos[0]["player1"]] / (repos[2][repos[0]["player1"]] + repos[2][repos[0]["player2"]])})%</p>
-      <table>
+      <table className={styles.table}>
         <tr>
-            <th>{repos[0]["player1"]} Placement</th>
-            <th>Tournament Name</th> 
-            <th>{repos[0]["player2"]} Placement</th>
+            <th className ={styles.th}>{repos[0]["player1"]} Placement</th>
+            <th className ={styles.th}>Tournament Name</th> 
+            <th className ={styles.th}>{repos[0]["player2"]} Placement</th>
         </tr>
       
         {repos.splice(4).map((repo) => {
             return (
             <tr key={repo.id} className='list'>
-                <td >{repo.placings[0]}</td>
-                <td >{repo.tournament} </td>
-                <td >{repo.placings[1]}</td>
+                <td className ={styles.td}>{repo.placings[0]}</td>
+                <td className ={styles.td}>{repo.tournament} </td>
+                <td className ={styles.td}>{repo.placings[1]}</td>
             </tr>
             );
         })}
       </table>
 
-      <table>
+      <table className={styles.table}>
         <tr>
-            <th>{repos[0]["player1"]} Set Score</th>
-            <th>Tournament Name</th> 
-            <th>Round</th> 
-            <th>{repos[0]["player2"]} Set Score</th>
+            <th className ={styles.th}>{repos[0]["player1"]} Set Score</th>
+            <th className ={styles.th}>Tournament Name</th> 
+            <th className ={styles.th}>Round</th> 
+            <th className ={styles.th}>{repos[0]["player2"]} Set Score</th>
         </tr>
       
         {(repos[3]).map((repo) => {
             return (
             <tr key={repo.id} className='list'>
-                <td >{repo.player1}</td>
-                <td >{repo.Tournament} </td>
-                <td >{repo.Round}</td>
-                <td >{repo.player2}</td>
+                <td className ={styles.td}>{repo.player1}</td>
+                <td className ={styles.td}>{repo.Tournament} </td>
+                <td className ={styles.td}>{repo.Round}</td>
+                <td className ={styles.td}>{repo.player2}</td>
             </tr>
             );
         })}

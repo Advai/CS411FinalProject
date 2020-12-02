@@ -7,6 +7,7 @@ import EloList from './../components/EloList';
 import axios from 'axios';
 import PGRList from "./../components/PGRList";
 import WithListLoading from "./../components/WithListLoading";
+import styles from "./../components/HeadToHeadList.module.css"
 export default class Elo extends Component {
     constructor(props) {
         super(props);
@@ -86,9 +87,9 @@ export default class Elo extends Component {
 
     render() {
     return (
-        <div className="Home">
+        <div className={styles.div}>
         <div className="lander">
-            <h1>PGRU Vs Panda Local Rankings</h1>
+            <h1>Panda Local Rankings vs PGRU</h1>
             {/* <p>Search for a Smash Player</p> */}
             {/* <form>
             <input type='text' name ='playerTag' placeholder='player tag' value={this.state.playerTag} onChange={this.handleInputChange}/>
@@ -97,8 +98,6 @@ export default class Elo extends Component {
         </div>
         <div key="div1">
         <this.PLRListLoading isLoading={this.state.loading} repos={this.state.plr_repos}/>
-        </div>
-        <div key="div2">
         <this.PGRListLoading isLoading={this.state.loading2} resp={this.state.pgr_repos}/>
         </div>
         </div>

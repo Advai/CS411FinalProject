@@ -8,16 +8,16 @@ const PGRList = (props) => {
       <table className ={styles.table} key="PGR table">
           <thead>
         <tr>
-            <th>Player</th>
-            <th>Ranking</th> 
+            <th className ={styles.th}>Player</th>
+            <th className ={styles.th}>Ranking</th> 
         </tr>
         </thead>
         <tbody>
         {resp.map((repo, i) => {
             return (
             <tr key={repo.key} className='l'>
-                <td key={repo.Player}>{repo.Player}</td>
-                <td key={repo.Elo}>{repo.Elo} </td>
+                <td key={repo.Player} className ={styles.td}>{repo.Player}</td>
+                <td key={repo.Elo} className ={styles.td}>{repo.Elo} </td>
             </tr>
             );
         })}
