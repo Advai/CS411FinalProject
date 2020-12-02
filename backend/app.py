@@ -9,6 +9,7 @@ from flask import Response,send_file
 import os
 from flask_cors import CORS, cross_origin
 import boto3
+import ast
 import json
 import requests
 
@@ -58,9 +59,8 @@ class Sets:
 @cross_origin(support_credentials=True)
 def eloRankings():
     pgr_player_tourneys = set()
-    pgr50_2 = dict(db.get_pgr50_2())
-    pgr50_1 = dict(db.get_pgr50_1())
-    pgr50ids = list(pgr50_2.keys())
+    pgr50 = dict(db.get_pgr50_1())
+    pgr50ids = list(pgr50.keys())
     setdata = db.get_sets_by_list_of_player_ids(pgr50ids)
     for s in setdata:
         pgr_player_tourneys.add(s[0])
@@ -82,30 +82,28 @@ def eloRankings():
             bracket = 1
         else:
             continue
-        if s[2] in pgr50_1:
-            if 1 <= pgr50_1[s[2]] <= 10:
-                initeloA = 2000
-            elif 11 <= pgr50_1[s[2]] <= 20:
-                initeloA = 1900
-            elif 21 <= pgr50_1[s[2]] <= 30:
-                initeloA = 1800
-            elif 31 <= pgr50_1[s[2]] <= 40:
-                initeloA = 1700
-            elif 41 <= pgr50_1[s[2]] <= 50:
-                initeloA = 1600
+        if 1 <= pgr50[s[2]] <= 10:
+            initeloA = 2000
+        elif 11 <= pgr50[s[2]] <= 20:
+            initeloA = 1900
+        elif 21 <= pgr50[s[2]] <= 30:
+            initeloA = 1800
+        elif 31 <= pgr50[s[2]] <= 40:
+            initeloA = 1700
+        elif 41 <= pgr50[s[2]] <= 50:
+            initeloA = 1600
         else:
             initeloA = 1500
-        if s[3] in pgr50_1:
-            if 1 <= pgr50_1[s[3]] <= 10:
-                initeloB = 2000
-            elif 11 <= pgr50_1[s[3]] <= 20:
-                initeloB = 1900
-            elif 21 <= pgr50_1[s[3]] <= 30:
-                initeloB = 1800
-            elif 31 <= pgr50_1[s[3]] <= 40:
-                initeloB = 1700
-            elif 41 <= pgr50_1[s[3]] <= 50:
-                initeloB = 1600
+        if 1 <= pgr50[s[3]] <= 10:
+            initeloB = 2000
+        elif 11 <= pgr50[s[3]] <= 20:
+            initeloB = 1900
+        elif 21 <= pgr50[s[3]] <= 30:
+            initeloB = 1800
+        elif 31 <= pgr50[s[3]] <= 40:
+            initeloB = 1700
+        elif 41 <= pgr50[s[3]] <= 50:
+            initeloB = 1600
         else:
             initeloB = 1500
         if s[2] not in player_histories:
@@ -200,45 +198,12 @@ def pretty_print_POST(req):
 def search():
     req = json.loads(request.data)
     gamertag = req['tag']
-    results = db.get_player_by_gamertag(gamertag)
-    res = json.loads(results[0][0])
-    return build_actual_response(jsonify(res))
-
-@app.route('/insert', methods=['post'])
-@cross_origin(supports_credentials=True)
-def insert():
-    req = json.loads(request.data)
-    gamertag = req['tag']
-    # print(gamertag)
-    results = db.insert_player_by_gamertag(gamertag)
-    # print(results[0][0])
-    print(results)
-    # print(res)
-    return
-@app.route('/update', methods=['post'])
-@cross_origin(supports_credentials=True)
-def update():
-    req = json.loads(request.data)
-    gamertag = req['tag']
     # print(gamertag)
     results = db.get_player_by_gamertag(gamertag)
     # print(results[0][0])
     res = json.loads(results[0][0])
     # print(res)
     return build_actual_response(jsonify(res))
-
-@app.route('/delete', methods=['post'])
-@cross_origin(supports_credentials=True)
-def delete():
-    req = json.loads(request.data)
-    gamertag = req['tag']
-    # print(gamertag)
-    results = db.get_player_by_gamertag(gamertag)
-    # print(results[0][0])
-    res = json.loads(results[0][0])
-    # print(res)
-    return build_actual_response(jsonify(res))
-
 
 
 @app.route("/test", methods=["get", "post"])
@@ -327,7 +292,16 @@ def get_head_to_head():
     obj_list.append(d)
     obj_list.append(sets)
     obj_list.append(games)
-
+    set_list = []
+    for res in results:
+        set_data = collections.OrderedDict()
+        set_data['Round'] = ast.literal_eval(res[6])[2]
+        set_data['Tournament'] = cleaned_names[res[0]]
+        set_data['player1'] = res[4]
+        set_data['player2'] = res[5]
+        set_list.append(set_data)
+    print(set_list)
+    obj_list.append(set_list)
     d = collections.OrderedDict()
     for row in actual2:
         d = collections.OrderedDict()
