@@ -5,7 +5,7 @@ import withListLoading from './../components/WithListLoading';
 import List from './../components/List';
 import axios from 'axios';
 import WithListLoading from "./../components/WithListLoading";
-export default class InsertPlayer extends Component {
+export default class UpdatePlayer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,12 +26,13 @@ export default class InsertPlayer extends Component {
         headers.append('Origin','http://localhost:5000');
         var self = this;
         axios({
-            url: "/insert",
+            url: "/update",
             baseURL: 'http://127.0.0.1:5000',
             method: 'POST',
             headers: headers,
             data: {
-                tag: this.state.playerTag
+                tag: this.state.playerTag,
+                newtag: this.state.newPlayerTag
             },
         })
             .then(function (response) {
@@ -48,6 +49,8 @@ export default class InsertPlayer extends Component {
                 console.log("I always run");
             });
     }
+
+    
     
     handleInputChange(event) {
         const {value, name} = event.target;
@@ -60,9 +63,10 @@ export default class InsertPlayer extends Component {
     return (
         <div className="Home">
         <div className="lander">
-            <p>Insert a Smash Player</p>
+        <p>Update a Smash Player</p>
             <form>
             <input type='text' name ='playerTag' placeholder='player tag' value={this.state.playerTag} onChange={this.handleInputChange}/>
+            <input type='text' name ='newPlayerTag' placeholder='new player tag' value={this.state.newPlayerTag} onChange={this.handleInputChange}/>
             <Button variant="btn btn-success" onClick={this.handleSearch}>Submit</Button>
             </form>
         </div>
