@@ -15,7 +15,6 @@ export default class Routes extends Component {
             <Router history={history}>
                 <Switch>
                     <Route path="/" exact component={Home} />
-                    <Route path="/Tournaments" exact component={Tournaments} />
                     <Route path="/HeadToHead" exact component={HeadToHead} />
                     <Route path="/Elo" exact component={Elo}/>
                     <Route path="/insert" exact component={InsertPlayer} />
