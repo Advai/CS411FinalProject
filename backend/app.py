@@ -60,7 +60,8 @@ class Sets:
 def eloRankings():
     pgr_player_tourneys = set()
     pgr50 = dict(db.get_pgr50_1())
-    pgr50ids = list(pgr50.keys())
+    pgr50_2 = dict(db.get_pgr50_2())
+    pgr50ids = list(pgr50_2.keys())
     setdata = db.get_sets_by_list_of_player_ids(pgr50ids)
     for s in setdata:
         pgr_player_tourneys.add(s[0])
@@ -82,28 +83,30 @@ def eloRankings():
             bracket = 1
         else:
             continue
-        if 1 <= pgr50[s[2]] <= 10:
-            initeloA = 2000
-        elif 11 <= pgr50[s[2]] <= 20:
-            initeloA = 1900
-        elif 21 <= pgr50[s[2]] <= 30:
-            initeloA = 1800
-        elif 31 <= pgr50[s[2]] <= 40:
-            initeloA = 1700
-        elif 41 <= pgr50[s[2]] <= 50:
-            initeloA = 1600
+        if s[2] in pgr50:
+            if 1 <= pgr50[s[2]] <= 10:
+                initeloA = 2000
+            elif 11 <= pgr50[s[2]] <= 20:
+                initeloA = 1900
+            elif 21 <= pgr50[s[2]] <= 30:
+                initeloA = 1800
+            elif 31 <= pgr50[s[2]] <= 40:
+                initeloA = 1700
+            elif 41 <= pgr50[s[2]] <= 50:
+                initeloA = 1600
         else:
             initeloA = 1500
-        if 1 <= pgr50[s[3]] <= 10:
-            initeloB = 2000
-        elif 11 <= pgr50[s[3]] <= 20:
-            initeloB = 1900
-        elif 21 <= pgr50[s[3]] <= 30:
-            initeloB = 1800
-        elif 31 <= pgr50[s[3]] <= 40:
-            initeloB = 1700
-        elif 41 <= pgr50[s[3]] <= 50:
-            initeloB = 1600
+        if s[3] in pgr50:   
+            if 1 <= pgr50[s[3]] <= 10:
+                initeloB = 2000
+            elif 11 <= pgr50[s[3]] <= 20:
+                initeloB = 1900
+            elif 21 <= pgr50[s[3]] <= 30:
+                initeloB = 1800
+            elif 31 <= pgr50[s[3]] <= 40:
+                initeloB = 1700
+            elif 41 <= pgr50[s[3]] <= 50:
+                initeloB = 1600
         else:
             initeloB = 1500
         if s[2] not in player_histories:
