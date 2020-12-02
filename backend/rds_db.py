@@ -44,6 +44,25 @@ def get_player_by_gamertag(tag):
     # with open("player_data.json", "w") as f:
     #     f.write(j)
     return details
+
+def insert_player_by_gamertag(tag):
+    query = f"INSERT INTO players (game, tag, all_tags, prefixes, social, country, state, region, placings, characters, alias) VALUES ('ultimate', '{tag}', NULL, NULL, NULL, NULL, NULL, NULL, '[{{\"key\": \"your-smash-bros-event\", \"placing\": 999, \"seed\": 999, \"dq\": false}}]', NULL, NULL);"
+    conn=create_connection()
+    cur=conn.cursor()
+    cur.execute(query)
+    conn.commit()
+    details = cur.fetchall()
+    cur.close()
+    # player_list = []
+    # for i in details:
+    #     t = (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11])
+    #     player_list.append(t)
+    # j = json.dumps(player_list, indent=2)
+    # print(j)
+    # with open("player_data.json", "w") as f:
+    #     f.write(j)
+    return
+
 def get_cleaned_names_by_keys(keys):
     cur = create_connection().cursor()
     cleaned_names = {}
@@ -88,8 +107,16 @@ def get_playerid_by_tag(tag):
 #     details = cur.fetchall()
 #     return details
 
-def get_pgr50():
+def get_pgr50_2():
     query = f"select by_id from ranking_seasons where season = 2 and ranking_name = 'PGRU'"
+    cur = create_connection().cursor()
+    cur.execute(query)
+    details = cur.fetchall()
+    cur.close()
+    return json.loads(details[0][0])
+
+def get_pgr50_1():
+    query = f"select by_id from ranking_seasons where season = 1 and ranking_name = 'PGRU'"
     cur = create_connection().cursor()
     cur.execute(query)
     details = cur.fetchall()
