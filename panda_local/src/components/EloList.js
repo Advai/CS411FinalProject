@@ -8,16 +8,16 @@ const EloList = (props) => {
       <table className ={styles.table} key="Elo table">
         <thead>
         <tr>
-            <th>Player</th>
-            <th>Ranking</th> 
+            <th className ={styles.th}>Player</th>
+            <th className ={styles.th}>Ranking</th> 
         </tr>
         </thead>
         <tbody>
         {repos.map((repo, i) => {
             return (
             <tr key={i} className='list'>
-                <td key={i}>{repo.Player}</td>
-                <td key={-i}>{repo.Elo} </td>
+                <td key={i} className ={styles.td}>{repo.Player}</td>
+                <td key={-i} className ={styles.td}>{repo.Elo} </td>
             </tr>
             );
         })}

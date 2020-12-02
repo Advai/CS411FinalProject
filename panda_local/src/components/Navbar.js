@@ -21,10 +21,10 @@ const Navigation = (props) => {
               <NavDropdown.Item href="#action/2">Ultimate</NavDropdown.Item>
             </NavDropdown> */}
           </Nav>
-          <Form inline>
+          {/* <Form inline>
             <FormControl type="text" placeholder="search" className="mr-sm-2" />
             <Button variant="outline-primary">search</Button>
-          </Form>
+          </Form> */}
         </Navbar.Collapse>
       </Navbar>
         // <Navbar bg="primary" variant="dark">
