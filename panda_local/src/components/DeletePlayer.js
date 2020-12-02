@@ -5,7 +5,7 @@ import withListLoading from './../components/WithListLoading';
 import List from './../components/List';
 import axios from 'axios';
 import WithListLoading from "./../components/WithListLoading";
-export default class InsertPlayer extends Component {
+export default class DeletePlayer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,7 +26,7 @@ export default class InsertPlayer extends Component {
         headers.append('Origin','http://localhost:5000');
         var self = this;
         axios({
-            url: "/insert",
+            url: "/delete",
             baseURL: 'http://127.0.0.1:5000',
             method: 'POST',
             headers: headers,
@@ -60,7 +60,6 @@ export default class InsertPlayer extends Component {
     return (
         <div className="Home">
         <div className="lander">
-            <p>Insert a Smash Player</p>
             <form>
             <input type='text' name ='playerTag' placeholder='player tag' value={this.state.playerTag} onChange={this.handleInputChange}/>
             <Button variant="btn btn-success" onClick={this.handleSearch}>Submit</Button>

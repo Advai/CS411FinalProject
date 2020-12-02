@@ -7,14 +7,15 @@ const Navigation = (props) => {
     console.log(props);
     return (
         <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">Panda Local</Navbar.Brand>
+        <Navbar.Brand href="/">Panda Local</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
           <Nav className="mr-auto">
           <Nav.Link href="/Elo">Rankings</Nav.Link>
             <Nav.Link href="/Tournaments">Tournaments</Nav.Link>
             <Nav.Link href="/HeadToHead">Head to Head</Nav.Link>
-            <Nav.Link href="/insert">crud</Nav.Link>
+            <Nav.Link href="/insert">Insert Player</Nav.Link>
+            <Nav.Link href="/delete">Delete Player</Nav.Link>
             {/* <NavDropdown title="Games">
               <NavDropdown.Item href="#action/1">Melee</NavDropdown.Item>
               <NavDropdown.Item href="#action/2">Ultimate</NavDropdown.Item>
