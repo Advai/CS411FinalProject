@@ -7,7 +7,7 @@ const Navigation = (props) => {
     console.log(props);
     return (
         <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">Panda Local</Navbar.Brand>
+        <Navbar.Brand href="/">Panda Local</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
           <Nav className="mr-auto">

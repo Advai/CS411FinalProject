@@ -8,6 +8,8 @@
 .table {
     float: left;
     display: inline-block;
+    margin: 1em;
+    border: 0.1em solid black;
 }
 .span {
     display: inline-block;
