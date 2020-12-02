@@ -7,6 +7,7 @@ import Tournaments from "./Tournaments/Tournaments"
 import Elo from "./components/Elo";
 import InsertPlayer from "./components/InsertPlayer";
 import DeletePlayer from "./components/DeletePlayer";
+import UpdatePlayer from "./components/UpdatePlayer";
 // https://rookiecoder.medium.com/react-button-click-navigate-to-new-page-6af7397ea220
 export default class Routes extends Component {
     render() {
@@ -19,6 +20,7 @@ export default class Routes extends Component {
                     <Route path="/Elo" exact component={Elo}/>
                     <Route path="/insert" exact component={InsertPlayer} />
                     <Route path='/delete' exact component={DeletePlayer} />
+                    <Route path='/update' exact component={UpdatePlayer} />
                     {/* <Route path="/Contact" component={Contact} /> */}
                     {/* <Route path="/Products" component={Products} /> */}
                 </Switch>

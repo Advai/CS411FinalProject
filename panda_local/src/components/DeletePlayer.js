@@ -60,13 +60,11 @@ export default class DeletePlayer extends Component {
     return (
         <div className="Home">
         <div className="lander">
+        <p>Delete a Smash Player</p>
             <form>
             <input type='text' name ='playerTag' placeholder='player tag' value={this.state.playerTag} onChange={this.handleInputChange}/>
             <Button variant="btn btn-success" onClick={this.handleSearch}>Submit</Button>
             </form>
-        </div>
-        <div>
-        <this.ListLoading isLoading={this.state.loading} repos={this.state.repos}/>
         </div>
         </div>
     );

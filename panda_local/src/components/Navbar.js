@@ -12,10 +12,10 @@ const Navigation = (props) => {
         <Navbar.Collapse>
           <Nav className="mr-auto">
           <Nav.Link href="/Elo">Rankings</Nav.Link>
-            <Nav.Link href="/Tournaments">Tournaments</Nav.Link>
             <Nav.Link href="/HeadToHead">Head to Head</Nav.Link>
             <Nav.Link href="/insert">Insert Player</Nav.Link>
             <Nav.Link href="/delete">Delete Player</Nav.Link>
+            <Nav.Link href="/update">Update Player</Nav.Link>
             {/* <NavDropdown title="Games">
               <NavDropdown.Item href="#action/1">Melee</NavDropdown.Item>
               <NavDropdown.Item href="#action/2">Ultimate</NavDropdown.Item>

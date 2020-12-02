@@ -201,9 +201,9 @@ def search():
     req = json.loads(request.data)
     gamertag = req['tag']
     results = db.get_player_by_gamertag(gamertag)
-    res = json.loads(results[0][0])
-    return build_actual_response(jsonify(res))
-
+    if results:
+        return jsonify(json.loads(results[0][0]))
+    return ''
 @app.route('/insert', methods=['post'])
 @cross_origin(supports_credentials=True)
 def insert():
@@ -216,12 +216,9 @@ def insert():
 def update():
     req = json.loads(request.data)
     gamertag = req['tag']
-    # print(gamertag)
-    results = db.get_player_by_gamertag(gamertag)
-    # print(results[0][0])
-    res = json.loads(results[0][0])
-    # print(res)
-    return build_actual_response(jsonify(res))
+    newgamertag = req['newtag']
+    db.update_player_by_gamertag(gamertag,newgamertag)
+    return ''
 
 @app.route('/delete', methods=['post'])
 @cross_origin(supports_credentials=True)

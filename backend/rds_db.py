@@ -81,6 +81,24 @@ def insert_player_by_gamertag(tag):
     #     f.write(j)
     return
 
+def update_player_by_gamertag(tag, newtag):
+    query = f"UPDATE players SET tag = '{newtag}' where tag= '{tag}';"
+    conn=create_connection()
+    cur=conn.cursor()
+    cur.execute(query)
+    conn.commit()
+    details = cur.fetchall()
+    cur.close()
+    # player_list = []
+    # for i in details:
+    #     t = (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11])
+    #     player_list.append(t)
+    # j = json.dumps(player_list, indent=2)
+    # print(j)
+    # with open("player_data.json", "w") as f:
+    #     f.write(j)
+    return
+
 def get_cleaned_names_by_keys(keys):
     cur = create_connection().cursor()
     cleaned_names = {}
