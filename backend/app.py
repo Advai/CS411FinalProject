@@ -259,6 +259,8 @@ def get_pgr_players():
 @app.route("/headtohead", methods=["post"])
 @cross_origin(support_credentials=True)
 def get_head_to_head():
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
+    table = dynamodb.Table("players")
     data = json.loads(request.data)
     p1 = data["player1"]
     p2 = data["player2"] 
